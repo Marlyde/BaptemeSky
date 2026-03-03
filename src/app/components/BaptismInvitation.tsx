@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Pencil, Check } from "lucide-react";
+import { Pencil, Check, Loader2 } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function BaptismInvitation() {
   const [isEditing, setIsEditing] = useState(false);
   const [showRSVPModal, setShowRSVPModal] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [babyName, setBabyName] = useState("Sky");
   const [day, setDay] = useState("Samedi");
   const [date, setDate] = useState("13");
@@ -35,6 +37,8 @@ export function BaptismInvitation() {
       alert("Veuillez entrer votre nom");
       return;
     }
+    
+    setIsSubmitting(true);
     
     try {
       await fetch("https://script.google.com/macros/s/AKfycbwu9SZrPKMpOV86E0Gafi1xB2fLZz9PQmb-JW5FexrSw02uLnpjtrKlJDIh0mLOPgEgxA/exec", {
@@ -74,6 +78,8 @@ export function BaptismInvitation() {
     } catch (error) {
       alert("Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.");
       console.error("Erreur lors de l'envoi:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -443,7 +449,7 @@ export function BaptismInvitation() {
                 onClick={handleSubmitRSVP}
                 className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
               >
-                Confirmer
+                {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirmer"}
               </motion.button>
             </div>
           </motion.div>
