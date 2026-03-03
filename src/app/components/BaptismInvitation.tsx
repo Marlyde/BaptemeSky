@@ -108,7 +108,7 @@ export function BaptismInvitation() {
           className="absolute top-0 left-0 right-0 z-20 pointer-events-none flex justify-center"
         >
           <img
-            src="public/florals-top.png"
+            src="/florals-top.png"
             alt=""
             className="w-full max-w-2xl h-auto object-contain"
             style={{
@@ -126,7 +126,7 @@ export function BaptismInvitation() {
           className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex justify-center items-end"
         >
           <img
-            src="public/florals-bottom.png"
+            src="/florals-bottom.png"
             alt=""
             className="w-full max-w-2xl h-auto object-contain"
             style={{
